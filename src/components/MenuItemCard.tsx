@@ -10,7 +10,7 @@ export const MenuItemCard: React.FC<Props> = ({ item }) => {
   return (
     <div className="flex gap-3 py-3 border-b border-white/5">
       {item.imageUrl && (
-        <div className="w-20 h-20 rounded-xl overflow-hidden flex-shrink-0 bg-white/5">
+        <div className="w-20 h-20 rounded-xl overflow-hidden shrink-0 bg-white/5">
           <img
             src={item.imageUrl}
             alt={item.name}

@@ -12,7 +12,7 @@ export const MenuCategorySection: React.FC<Props> = ({ category }) => {
     <section className="scroll-mt-24">
       <h2 className="text-xl sm:text-2xl font-semibold mb-1 flex items-center gap-2">
         {category.name}
-        <span className="h-px flex-1 bg-gradient-to-r from-red-500/60 to-transparent" />
+        <span className="h-px flex-1 bg-linear-to-r from-red-500/60 to-transparent" />
       </h2>
       {category.description && (
         <p className="text-xs sm:text-sm text-white/60 mb-2">
