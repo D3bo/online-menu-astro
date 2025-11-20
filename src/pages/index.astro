@@ -15,23 +15,23 @@ import { MenuApp } from "../components/MenuApp";
     <meta name="viewport" content="width=device-width, initial-scale=1" />
   </head>
   <body class="bg-[#0b0b0b] text-white min-h-screen flex flex-col">
-    <header class="border-b border-white/10 bg-black/60 backdrop-blur sticky top-0 z-20">
+<header class="border-b border-white/10 bg-black/60 backdrop-blur sticky top-0 z-20">
   <div class="max-w-5xl mx-auto px-4 py-4 flex justify-between items-center">
     <div class="flex items-center gap-2">
-      <a href="/" class="text-2xl font-semibold tracking-wide hover:text-red-300 transition">
-        OSTEDIA BARBIERI
+      <a href="/" class="text-xl font-semibold tracking-wide hover:text-red-300 transition">
+        Osteria Barbieri
       </a>
-      <span class="text-xs px-2 py-1 rounded-full bg-red-600/20 text-red-400">
-        Menu
-      </span>
     </div>
-    <nav class="hidden sm:flex items-center gap-4 text-xs text-white/70">
-      <span class="text-white/50">Menu</span>
+
+    <!-- 👇 visible on ALL screen sizes -->
+    <nav class="flex items-center gap-4 text-xs text-white/70">
+      <a href="/" class="hover:text-white transition">Menu</a>
       <span class="text-white/40">•</span>
       <a href="/info" class="hover:text-white transition">Info</a>
     </nav>
   </div>
 </header>
+
 
     <main class="flex-1">
       <MenuApp client:load />
