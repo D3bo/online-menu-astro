@@ -1,0 +1,160 @@
+---
+import { menuInfo } from "../data/menuInfo";
+import "../styles/global.css";
+
+const mapUrl = `https://www.google.com/maps?q=${menuInfo.lat},${menuInfo.lng}&z=15&output=embed`;
+---
+
+<html lang="it">
+  <head>
+    <meta charset="UTF-8" />
+    <title>{menuInfo.restaurantName} – Informazioni</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+  </head>
+  <body class="bg-[#0b0b0b] text-white min-h-screen flex flex-col">
+    <header class="border-b border-white/10 bg-black/60 backdrop-blur sticky top-0 z-20">
+      <div class="max-w-5xl mx-auto px-4 py-4 flex justify-between items-center">
+        <div class="flex items-center gap-2">
+          <a href="/" class="text-2xl font-semibold tracking-wide hover:text-red-300 transition">
+            {menuInfo.restaurantName}
+          </a>
+          <span class="text-xs px-2 py-1 rounded-full bg-red-600/20 text-red-400">
+            Informazioni
+          </span>
+        </div>
+        <nav class="hidden sm:flex items-center gap-4 text-xs text-white/70">
+          <a href="/" class="hover:text-white transition">Menu</a>
+          <span class="text-white/40">•</span>
+          <span class="text-white/50">Info</span>
+        </nav>
+      </div>
+    </header>
+
+    <main class="flex-1">
+      <section class="max-w-5xl mx-auto px-4 py-8 space-y-8">
+        <!-- Hero / header text -->
+        <div class="space-y-2">
+          <p class="text-sm uppercase tracking-[0.2em] text-red-300/80">
+            Osteria
+          </p>
+          <h1 class="text-3xl sm:text-4xl font-semibold">
+            {menuInfo.restaurantName}
+          </h1>
+          <p class="text-sm sm:text-base text-white/70 mt-2">
+            {menuInfo.headerText}
+          </p>
+        </div>
+
+        <!-- Main content: description + opening hours -->
+        <div class="grid gap-6 md:grid-cols-[minmax(0,2fr)_minmax(0,1.2fr)]">
+          <div class="bg-white/5 rounded-2xl p-5 sm:p-6 shadow-lg shadow-black/40 space-y-4">
+            <h2 class="text-lg font-semibold mb-1">
+              La nostra storia
+            </h2>
+            <p class="text-sm text-white/70 whitespace-pre-line leading-relaxed">
+              {menuInfo.restaurantDescription}
+            </p>
+          </div>
+
+          <div class="space-y-4">
+            <div class="bg-white/5 rounded-2xl p-5 shadow-lg shadow-black/40">
+              <h2 class="text-lg font-semibold mb-2">
+                Orari di apertura
+              </h2>
+              <p class="text-sm text-white/70 whitespace-pre-line">
+                {menuInfo.openingHours}
+              </p>
+            </div>
+
+            <div class="bg-white/5 rounded-2xl p-5 shadow-lg shadow-black/40 space-y-2">
+              <h2 class="text-lg font-semibold mb-2">Contatti</h2>
+              <p class="text-sm text-white/80">
+                {menuInfo.restaurantAddress}
+              </p>
+
+              <p class="text-sm text-white/80 mt-2">
+                <span class="text-white/60">Telefono: </span>
+                <a href={`tel:${menuInfo.restaurantPhone}`} class="hover:text-red-300">
+                  {menuInfo.restaurantPhone}
+                </a>
+              </p>
+
+              <p class="text-sm text-white/80">
+                <span class="text-white/60">Email: </span>
+                <a href={`mailto:${menuInfo.restaurantEmail}`} class="hover:text-red-300">
+                  {menuInfo.restaurantEmail}
+                </a>
+              </p>
+
+              {menuInfo.restaurantWebsite && (
+                <p class="text-sm text-white/80">
+                  <span class="text-white/60">Sito web: </span>
+                  <a
+                    href={menuInfo.restaurantWebsite}
+                    target="_blank"
+                    rel="noreferrer"
+                    class="hover:text-red-300 underline underline-offset-2"
+                  >
+                    {menuInfo.restaurantWebsite.replace("https://", "").replace("http://", "")}
+                  </a>
+                </p>
+              )}
+
+              <div class="flex flex-wrap gap-2 mt-3">
+                {menuInfo.restaurantFacebook && (
+                  <a
+                    href={menuInfo.restaurantFacebook}
+                    target="_blank"
+                    rel="noreferrer"
+                    class="text-xs px-3 py-1 rounded-full bg-white/10 hover:bg-white/20 transition"
+                  >
+                    Facebook
+                  </a>
+                )}
+                {menuInfo.restaurantInstagram && (
+                  <a
+                    href={menuInfo.restaurantInstagram}
+                    target="_blank"
+                    rel="noreferrer"
+                    class="text-xs px-3 py-1 rounded-full bg-white/10 hover:bg-white/20 transition"
+                  >
+                    Instagram
+                  </a>
+                )}
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Map -->
+        <div class="bg-white/5 rounded-2xl p-5 sm:p-6 shadow-lg shadow-black/40 space-y-3">
+          <div class="flex items-center justify-between gap-2">
+            <h2 class="text-lg font-semibold">Dove siamo</h2>
+            <a
+              href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(menuInfo.restaurantName + " " + menuInfo.restaurantAddress)}`}
+              target="_blank"
+              rel="noreferrer"
+              class="text-xs text-red-300 hover:text-red-200 underline underline-offset-2"
+            >
+              Apri in Google Maps
+            </a>
+          </div>
+
+          <div class="aspect-[16/9] rounded-xl overflow-hidden bg-black/40">
+            <iframe
+              src={mapUrl}
+              loading="lazy"
+              referrerpolicy="no-referrer-when-downgrade"
+              class="w-full h-full border-0"
+              title={menuInfo.mapMarkerTitle}
+            ></iframe>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="border-t border-white/10 py-6 text-center text-xs text-white/40 mt-10">
+      © {new Date().getFullYear()} {menuInfo.restaurantName}. Tutti i diritti riservati.
+    </footer>
+  </body>
+</html>

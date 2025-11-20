@@ -1,11 +1,44 @@
 ---
 import Welcome from '../components/Welcome.astro';
 import Layout from '../layouts/Layout.astro';
+import "../styles/global.css";
+import { MenuApp } from "../components/MenuApp";
+
 
 // Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
 // Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
 ---
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>La Trattoria – Online Menu</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+  </head>
+  <body class="bg-[#0b0b0b] text-white min-h-screen flex flex-col">
+    <header class="border-b border-white/10 bg-black/60 backdrop-blur sticky top-0 z-20">
+  <div class="max-w-5xl mx-auto px-4 py-4 flex justify-between items-center">
+    <div class="flex items-center gap-2">
+      <a href="/" class="text-2xl font-semibold tracking-wide hover:text-red-300 transition">
+        OSTEDIA BARBIERI
+      </a>
+      <span class="text-xs px-2 py-1 rounded-full bg-red-600/20 text-red-400">
+        Menu
+      </span>
+    </div>
+    <nav class="hidden sm:flex items-center gap-4 text-xs text-white/70">
+      <span class="text-white/50">Menu</span>
+      <span class="text-white/40">•</span>
+      <a href="/info" class="hover:text-white transition">Info</a>
+    </nav>
+  </div>
+</header>
 
-<Layout>
-	<Welcome />
-</Layout>
+    <main class="flex-1">
+      <MenuApp client:load />
+    </main>
+
+    <footer class="border-t border-white/10 py-6 text-center text-xs text-white/40 mt-10">
+      © {new Date().getFullYear()} La Trattoria. All rights reserved.
+    </footer>
+  </body>
+</html>
